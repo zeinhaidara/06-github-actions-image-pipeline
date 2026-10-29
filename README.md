@@ -21,13 +21,11 @@ The scan fails on HIGH or CRITICAL findings that have a fix available.
 
 ## Verify a signed image
 
-Replace `OWNER/REPO` with this repository.
-
 ```sh
 cosign verify \
   --certificate-oidc-issuer https://token.actions.githubusercontent.com \
-  --certificate-identity "https://github.com/OWNER/REPO/.github/workflows/image.yml@refs/heads/main" \
-  ghcr.io/OWNER/REPO:latest
+  --certificate-identity "https://github.com/zeinhaidara/06-github-actions-image-pipeline/.github/workflows/image.yml@refs/heads/main" \
+  ghcr.io/zeinhaidara/06-github-actions-image-pipeline:latest
 ```
 
 ## Limits
@@ -50,4 +48,4 @@ bash test/README-check.sh   # workflow still has the scan, main-only push and co
 
 ## Status
 
-Tested with actionlint, hadolint and a local amd64 build only. Not yet run in GitHub Actions.
+Passed in GitHub Actions on main: Trivy scan, multi-arch push to GHCR, and Cosign signing. Run: https://github.com/zeinhaidara/06-github-actions-image-pipeline/actions/runs/40915364152
