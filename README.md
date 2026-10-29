@@ -32,9 +32,13 @@ cosign verify \
 
 ## Limits
 
-- The arm64 image is not scanned, only amd64.
+The scan job builds and scans the amd64 image. The publish job rebuilds the multi-arch image from the same Dockerfile and pushes it. The two builds are separate, so the pushed image is not byte-for-byte the scanned one. The arm64 image is not scanned.
+
+Next step: Push the scanned digest to a staging tag, scan that digest, and assemble the manifest from verified digests only.
+
+Other limits:
+
 - Trivy's database is fetched at run time.
-- The pushed image is rebuilt on main (layers come from the build cache), not the exact image that was scanned.
 - No SBOM, no provenance attestation beyond what Cosign signs.
 - Pushing only on main is enforced by the workflow's `if`, not by branch protection rules. Set branch protection on main yourself.
 
