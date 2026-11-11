@@ -1,4 +1,4 @@
-# GitHub Actions image pipeline
+# Container image pipeline (build, scan, sign)
 
 Unscanned images reach production because nothing checks them before they are pushed. Unsigned images cannot be traced back to the pipeline that built them. Pipelines that push from every branch leak images that nobody reviewed.
 
@@ -28,7 +28,7 @@ cosign verify \
   ghcr.io/zeinhaidara/06-github-actions-image-pipeline:latest
 ```
 
-## Limits
+## Known limitations
 
 The scan job builds and scans the amd64 image. The publish job rebuilds the multi-arch image from the same Dockerfile and pushes it. The two builds are separate, so the pushed image is not byte-for-byte the scanned one. The arm64 image is not scanned.
 
