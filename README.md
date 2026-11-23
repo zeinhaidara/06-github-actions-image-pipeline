@@ -28,6 +28,8 @@ cosign verify \
   ghcr.io/zeinhaidara/06-github-actions-image-pipeline:latest
 ```
 
+The workflow signs the image but does not run `cosign verify` itself. Verification is meant for whoever pulls the image, with the command above; CI does not check it.
+
 ## Known limitations
 
 The scan job builds and scans the amd64 image. The publish job rebuilds the multi-arch image from the same Dockerfile and pushes it. The two builds are separate, so the pushed image is not byte-for-byte the scanned one. The arm64 image is not scanned.
