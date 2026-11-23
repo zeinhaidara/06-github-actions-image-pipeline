@@ -42,8 +42,12 @@ Other limits:
 
 ## Checks
 
+Run locally (needs Docker):
+
 ```sh
-bash test/README-check.sh   # workflow still has the scan, main-only push and cosign sign
+docker build -t image-pipeline .
+docker run --rm image-pipeline   # prints "ok"
+bash test/README-check.sh        # workflow still has the scan, main-only push and cosign sign
 ```
 
 ## Status
